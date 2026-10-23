@@ -14,18 +14,32 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
+        /* Light & Dark Theme Variables */
         :root {
-            --surface-card: rgba(255, 255, 255, 0.90);
-            --surface-hover: rgba(255, 255, 255, 0.98);
+            --surface-card: rgba(255, 255, 255, 0.78);
+            --surface-hover: rgba(255, 255, 255, 0.92);
             --accent-pink: #d97288;
             --accent-deep: #a8435b;
             --text-dark: #4a2831;
             --text-muted: #8c5261;
+            --nav-bg: rgba(255, 255, 255, 0.82);
+            --badge-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --surface-card: rgba(30, 20, 25, 0.82);
+            --surface-hover: rgba(45, 28, 36, 0.92);
+            --accent-pink: #e08398;
+            --accent-deep: #f0a1b5;
+            --text-dark: #fcebf0;
+            --text-muted: #e0b1bc;
+            --nav-bg: rgba(25, 15, 20, 0.85);
+            --badge-bg: rgba(50, 30, 40, 0.9);
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 130px;
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -34,9 +48,10 @@
             background-color: #fcebf0;
             overflow-x: hidden;
             position: relative;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Custom Pattern Background using download (1).jpg with readable overlay */
+        /* Background Pattern Image clearly visible with lighter overlay */
         #bg-pattern {
             position: fixed;
             top: 0;
@@ -46,11 +61,9 @@
             z-index: -2;
             background-image: url('background.jpg');
             background-repeat: repeat;
-            background-size: 380px;
-            opacity: 0.85;
+            background-size: 340px;
         }
 
-        /* Soft readable tint overlay so text is never harsh on the eyes */
         #bg-overlay {
             position: fixed;
             top: 0;
@@ -58,17 +71,24 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(255, 240, 244, 0.92), rgba(252, 226, 233, 0.92));
+            background: linear-gradient(135deg, rgba(255, 245, 248, 0.65), rgba(252, 230, 236, 0.65));
             pointer-events: none;
+            transition: background 0.3s ease;
         }
 
+        [data-theme="dark"] #bg-overlay {
+            background: linear-gradient(135deg, rgba(15, 10, 12, 0.82), rgba(25, 15, 20, 0.82));
+        }
+
+        /* Fixed & Clean Header / Navbar */
         .custom-navbar {
-            background: rgba(255, 255, 255, 0.88) !important;
+            background: var(--nav-bg) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(230, 175, 190, 0.5);
-            padding: 12px 0;
-            box-shadow: 0 4px 20px rgba(220, 160, 180, 0.15);
+            border-bottom: 1px solid rgba(230, 175, 190, 0.4);
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(220, 160, 180, 0.12);
+            transition: background 0.3s ease;
         }
 
         .navbar-brand {
@@ -80,10 +100,10 @@
         .nav-link {
             color: var(--text-muted) !important;
             font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             transition: all 0.3s ease;
-            padding: 8px 14px !important;
-            border-radius: 20px;
+            padding: 6px 12px !important;
+            border-radius: 18px;
         }
 
         .nav-link:hover {
@@ -99,59 +119,83 @@
             font-weight: 600;
         }
 
+        /* Theme Toggle Button Style in Navbar */
+        .theme-toggle-btn {
+            background: var(--badge-bg);
+            border: 1px solid rgba(217, 114, 136, 0.4);
+            color: var(--accent-deep);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-pink);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Optimized Padding across sections */
         section {
-            padding: 90px 0;
+            padding: 70px 0;
             position: relative;
         }
 
         .section-title {
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .section-subtitle {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+            font-size: 0.92rem;
+            margin-bottom: 35px;
             font-weight: 500;
         }
 
+        /* Glass Cards with balanced padding */
         .glass-card {
             background: var(--surface-card);
-            border: 1px solid rgba(240, 180, 198, 0.7);
-            border-radius: 22px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 15px 35px rgba(210, 150, 170, 0.18);
+            border: 1px solid rgba(240, 180, 198, 0.55);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(210, 150, 170, 0.15);
             transition: all 0.35s ease;
-            padding: 40px !important;
+            padding: 30px !important;
         }
 
         .glass-card:hover {
             background: var(--surface-hover);
             border-color: var(--accent-pink);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(217, 114, 136, 0.28);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(217, 114, 136, 0.25);
         }
 
         #home {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            padding-top: 50px;
+            padding-top: 40px;
         }
 
         .hero-pill {
             display: inline-block;
-            background: rgba(232, 143, 162, 0.22);
+            background: rgba(232, 143, 162, 0.2);
             color: var(--accent-deep);
-            padding: 6px 18px;
+            padding: 6px 16px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            border: 1px solid rgba(232, 143, 162, 0.4);
-            margin-bottom: 20px;
+            border: 1px solid rgba(232, 143, 162, 0.35);
+            margin-bottom: 15px;
         }
 
         .btn-pink-gradient {
@@ -159,8 +203,8 @@
             border: none;
             color: white;
             font-weight: 600;
-            padding: 12px 28px;
-            border-radius: 14px;
+            padding: 10px 24px;
+            border-radius: 12px;
             box-shadow: 0 4px 14px rgba(217, 114, 136, 0.3);
             transition: all 0.3s ease;
             text-decoration: none;
@@ -174,11 +218,11 @@
         }
 
         .btn-pink-outline {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(217, 114, 136, 0.6);
+            background: var(--surface-card);
+            border: 1px solid rgba(217, 114, 136, 0.5);
             color: var(--accent-deep);
             font-weight: 600;
-            padding: 10px 24px;
+            padding: 9px 22px;
             border-radius: 12px;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -194,31 +238,31 @@
 
         .profile-frame {
             position: relative;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 30px;
-            border: 1px solid rgba(232, 143, 162, 0.5);
+            padding: 8px;
+            background: var(--surface-card);
+            border-radius: 28px;
+            border: 1px solid rgba(232, 143, 162, 0.45);
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(217, 114, 136, 0.2);
+            box-shadow: 0 10px 25px rgba(217, 114, 136, 0.2);
         }
 
         .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             border-radius: 20px;
         }
 
         .tech-badge {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--badge-bg);
             color: var(--accent-deep);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
             font-weight: 500;
             display: inline-block;
-            margin: 5px;
-            border: 1px solid rgba(232, 143, 162, 0.4);
+            margin: 4px;
+            border: 1px solid rgba(232, 143, 162, 0.35);
             transition: all 0.3s ease;
         }
 
@@ -230,11 +274,11 @@
         }
 
         .certificate-card img {
-            height: 190px;
+            height: 180px;
             object-fit: cover;
-            border-top-left-radius: 22px;
-            border-top-right-radius: 22px;
-            border-bottom: 1px solid rgba(245, 195, 210, 0.7);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom: 1px solid rgba(245, 195, 210, 0.6);
             transition: transform 0.3s ease;
         }
 
@@ -244,9 +288,9 @@
 
         .contact-box {
             background: var(--surface-card);
-            border: 1px solid rgba(240, 180, 198, 0.7);
-            border-radius: 20px;
-            padding: 35px 25px !important;
+            border: 1px solid rgba(240, 180, 198, 0.6);
+            border-radius: 18px;
+            padding: 25px 20px !important;
             height: 100%;
             transition: all 0.3s ease;
             text-decoration: none !important;
@@ -256,16 +300,16 @@
         }
 
         .contact-box:hover {
-            background: rgba(255, 255, 255, 0.98);
+            background: var(--surface-hover);
             border-color: var(--accent-pink);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(217, 114, 136, 0.22);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(217, 114, 136, 0.2);
         }
 
         .contact-box i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-pink);
-            margin-right: 18px;
+            margin-right: 15px;
             flex-shrink: 0;
         }
 
@@ -277,8 +321,8 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             display: none;
             align-items: center;
             justify-content: center;
@@ -294,40 +338,40 @@
         }
 
         footer {
-            background-color: rgba(247, 214, 224, 0.95);
-            padding: 25px 0;
-            border-top: 1px solid rgba(230, 175, 190, 0.6);
+            background-color: var(--surface-card);
+            padding: 22px 0;
+            border-top: 1px solid rgba(230, 175, 190, 0.4);
             color: var(--accent-deep);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
         }
 
         .modal-content {
-            background-color: #fff6f8;
+            background-color: var(--surface-hover);
             color: var(--text-dark);
             border: 1px solid rgba(240, 180, 198, 0.8);
             border-radius: 20px;
         }
         .modal-header, .modal-footer {
-            border-color: rgba(240, 180, 198, 0.6);
+            border-color: rgba(240, 180, 198, 0.5);
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <!-- Custom Pattern Background & Readable Overlay -->
     <div id="bg-pattern"></div>
     <div id="bg-overlay"></div>
 
     <!-- Navigation Header -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top custom-navbar">
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
         <div class="container">
             <a class="navbar-brand" href="#home"><i class="fa-solid fa-code me-2"></i>Rewelyn.BSIT</a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav gap-1">
+                <ul class="navbar-nav align-items-lg-center gap-1">
                     <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
@@ -338,6 +382,11 @@
                     <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="#reflection">Reflection</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Day/Dark Theme">
+                            <i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeText">Dark</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -346,11 +395,11 @@
     <!-- HOME SECTION -->
     <section id="home">
         <div class="container" data-aos="fade-up">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4">
                 <div class="col-lg-7 text-center text-lg-start">
                     <span class="hero-pill"><i class="fa-solid fa-graduation-cap me-2"></i>BSIT 4th Year Professional Portfolio</span>
-                    <h1 class="display-4 fw-bold mb-3" style="color: var(--text-dark);">Hi, I'm <br><span style="color: var(--accent-pink);">Rewelyn Sheen H. Bogabil</span></h1>
-                    <p class="lead mb-4" style="color: var(--text-dark); font-size: 1.05rem; font-weight: 500;">21 Years Old | Datamex College of Saint Adeline. Expert in Advanced Excel Modeling, Quantitative Thesis Documentation, and IT Systems Support.</p>
+                    <h1 class="display-5 fw-bold mb-3" style="color: var(--text-dark);">Hi, I'm <br><span style="color: var(--accent-pink);">Rewelyn Sheen H. Bogabil</span></h1>
+                    <p class="lead mb-4" style="color: var(--text-dark); font-size: 1rem; font-weight: 500;">21 Years Old | Datamex College of Saint Adeline. Expert in Advanced Excel Modeling, Quantitative Thesis Documentation, and IT Systems Support.</p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
                         <a href="#projects" class="btn btn-pink-gradient"><i class="fa-solid fa-layer-group me-2"></i>Explore Projects</a>
                         <a href="#contact" class="btn btn-pink-outline"><i class="fa-solid fa-paper-plane me-2"></i>Get in Touch</a>
@@ -472,7 +521,7 @@
                         <div>
                             <span class="badge mb-3 align-self-start text-white" style="background-color: #a8435b;">Hardware / IoT Project</span>
                             <h4 class="h5 fw-bold" style="color: var(--text-dark);">Vault Lock</h4>
-                            <p class="small mt-2" style="color: var(--text-muted); font-weight: 500;">Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access. It acts as a central, encrypted storage place for all your login credentials, making it much harder for hackers or anyone else to steal them.</p>
+                            <p class="small mt-2" style="color: var(--text-muted); font-weight: 500;">Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access.</p>
                         </div>
                         <div class="pt-3">
                             <button type="button" class="btn btn-pink-outline btn-sm w-100 text-center" data-bs-toggle="modal" data-bs-target="#project3Modal">
@@ -498,7 +547,7 @@
                     <p class="mb-3 text-start small" style="color: var(--text-muted); font-weight: 500;">
                         Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access.
                     </p>
-                    <img src="sheen's arduino project.jpg" alt="Sheen's Vault Lock Project" class="img-fluid rounded shadow-sm mb-3" style="max-height: 280px; width: 100%; object-fit: cover;">
+                    <img src="sheen's arduino project.jpg" alt="Sheen's Vault Lock Project" class="img-fluid rounded shadow-sm mb-3" style="max-height: 260px; width: 100%; object-fit: cover;">
                     <small class="d-block" style="color: var(--text-muted); font-weight: 500;">Arduino Password Vault Lock Hardware Prototype Setup</small>
                 </div>
                 <div class="modal-footer border-0">
@@ -683,7 +732,7 @@
             <p class="section-subtitle">Official CV for IT and Data Analyst positions</p>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="glass-card p-5 text-center">
+                    <div class="glass-card p-4 p-md-5 text-center">
                         <h4 class="fw-bold mb-3" style="color: var(--text-dark);">Looking for my official CV?</h4>
                         <p class="mb-4" style="color: var(--text-muted); font-weight: 500;">Tailored for Data Analyst, Research Assistant, and IT Systems Support roles.</p>
                         <a href="sheen-resume.pdf" download="sheen-resume.pdf" class="btn btn-pink-gradient mx-auto"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Official Resume</a>
@@ -781,6 +830,43 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
+        // Day / Dark Theme Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.textContent = 'Day';
+                localStorage.setItem('portfolio_theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.textContent = 'Dark';
+                localStorage.setItem('portfolio_theme', 'light');
+            }
+        }
+
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('portfolio_theme') || 'light';
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            body.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.textContent = 'Day';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.textContent = 'Dark';
+            }
+        });
+
+        // ScrollSpy and Back to Top
         window.addEventListener('scroll', function() {
             const btn = document.getElementById('back-to-top');
             if (window.scrollY > 300) {
@@ -794,7 +880,7 @@
             
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 140;
+                const sectionTop = section.offsetTop - 120;
                 if (window.scrollY >= sectionTop) {
                     current = section.getAttribute('id');
                 }
