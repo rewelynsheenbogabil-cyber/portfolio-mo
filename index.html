@@ -25,7 +25,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 130px;
+            scroll-padding-top: 100px; /* Adjusted to prevent header overlap */
         }
 
         body {
@@ -63,11 +63,11 @@
         }
 
         .custom-navbar {
-            background: rgba(255, 255, 255, 0.88) !important;
+            background: rgba(255, 255, 255, 0.92) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(230, 175, 190, 0.5);
-            padding: 12px 0;
+            padding: 10px 0;
             box-shadow: 0 4px 20px rgba(220, 160, 180, 0.15);
         }
 
@@ -75,6 +75,7 @@
             font-weight: 700;
             color: var(--accent-pink) !important;
             letter-spacing: 0.5px;
+            font-size: 1.1rem;
         }
 
         .nav-link {
@@ -100,7 +101,7 @@
         }
 
         section {
-            padding: 90px 0;
+            padding: 70px 0;
             position: relative;
         }
 
@@ -108,13 +109,15 @@
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 8px;
+            font-size: clamp(1.75rem, 3vw, 2.3rem);
         }
 
         .section-subtitle {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 35px;
             font-weight: 500;
+            padding: 0 10px;
         }
 
         .glass-card {
@@ -125,13 +128,19 @@
             -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 15px 35px rgba(210, 150, 170, 0.18);
             transition: all 0.35s ease;
-            padding: 40px !important;
+            padding: 30px !important;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 20px !important;
+            }
         }
 
         .glass-card:hover {
             background: var(--surface-hover);
             border-color: var(--accent-pink);
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(217, 114, 136, 0.28);
         }
 
@@ -139,7 +148,7 @@
             min-height: 90vh;
             display: flex;
             align-items: center;
-            padding-top: 50px;
+            padding-top: 110px; /* Extra padding for fixed navbar */
         }
 
         .hero-pill {
@@ -148,10 +157,10 @@
             color: var(--accent-deep);
             padding: 6px 18px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             border: 1px solid rgba(232, 143, 162, 0.4);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .btn-pink-gradient {
@@ -194,7 +203,7 @@
 
         .profile-frame {
             position: relative;
-            padding: 10px;
+            padding: 8px;
             background: rgba(255, 255, 255, 0.85);
             border-radius: 30px;
             border: 1px solid rgba(232, 143, 162, 0.5);
@@ -203,21 +212,28 @@
         }
 
         .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 190px;
+            height: 190px;
             object-fit: cover;
             border-radius: 20px;
+        }
+
+        @media(min-width: 992px) {
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
         }
 
         .tech-badge {
             background: rgba(255, 255, 255, 0.95);
             color: var(--accent-deep);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             display: inline-block;
-            margin: 5px;
+            margin: 4px;
             border: 1px solid rgba(232, 143, 162, 0.4);
             transition: all 0.3s ease;
         }
@@ -230,7 +246,7 @@
         }
 
         .certificate-card img {
-            height: 190px;
+            height: 180px;
             object-fit: cover;
             border-top-left-radius: 22px;
             border-top-right-radius: 22px;
@@ -246,7 +262,7 @@
             background: var(--surface-card);
             border: 1px solid rgba(240, 180, 198, 0.7);
             border-radius: 20px;
-            padding: 35px 25px !important;
+            padding: 25px 20px !important;
             height: 100%;
             transition: all 0.3s ease;
             text-decoration: none !important;
@@ -263,9 +279,9 @@
         }
 
         .contact-box i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-pink);
-            margin-right: 18px;
+            margin-right: 15px;
             flex-shrink: 0;
         }
 
@@ -277,8 +293,8 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             display: none;
             align-items: center;
             justify-content: center;
@@ -298,7 +314,7 @@
             padding: 25px 0;
             border-top: 1px solid rgba(230, 175, 190, 0.6);
             color: var(--accent-deep);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
@@ -323,11 +339,11 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top custom-navbar">
         <div class="container">
             <a class="navbar-brand" href="#home"><i class="fa-solid fa-code me-2"></i>Rewelyn.BSIT</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav gap-1">
+                <ul class="navbar-nav gap-1 mt-2 mt-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
@@ -346,11 +362,11 @@
     <!-- HOME SECTION -->
     <section id="home">
         <div class="container" data-aos="fade-up">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4">
                 <div class="col-lg-7 text-center text-lg-start">
                     <span class="hero-pill"><i class="fa-solid fa-graduation-cap me-2"></i>BSIT 4th Year Professional Portfolio</span>
-                    <h1 class="display-4 fw-bold mb-3" style="color: var(--text-dark);">Hi, I'm <br><span style="color: var(--accent-pink);">Rewelyn Sheen H. Bogabil</span></h1>
-                    <p class="lead mb-4" style="color: var(--text-dark); font-size: 1.05rem; font-weight: 500;">21 Years Old | Datamex College of Saint Adeline. Expert in Advanced Excel Modeling, Quantitative Thesis Documentation, and IT Systems Support.</p>
+                    <h1 class="display-5 fw-bold mb-3" style="color: var(--text-dark); font-size: clamp(2rem, 4vw, 3rem);">Hi, I'm <br><span style="color: var(--accent-pink);">Rewelyn Sheen H. Bogabil</span></h1>
+                    <p class="lead mb-4" style="color: var(--text-dark); font-size: 1rem; font-weight: 500;">21 Years Old | Datamex College of Saint Adeline. Expert in Advanced Excel Modeling, Quantitative Thesis Documentation, and IT Systems Support.</p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
                         <a href="#projects" class="btn btn-pink-gradient"><i class="fa-solid fa-layer-group me-2"></i>Explore Projects</a>
                         <a href="#contact" class="btn btn-pink-outline"><i class="fa-solid fa-paper-plane me-2"></i>Get in Touch</a>
@@ -472,7 +488,7 @@
                         <div>
                             <span class="badge mb-3 align-self-start text-white" style="background-color: #a8435b;">Hardware / IoT Project</span>
                             <h4 class="h5 fw-bold" style="color: var(--text-dark);">Vault Lock</h4>
-                            <p class="small mt-2" style="color: var(--text-muted); font-weight: 500;">Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access. It acts as a central, encrypted storage place for all your login credentials, making it much harder for hackers or anyone else to steal them.</p>
+                            <p class="small mt-2" style="color: var(--text-muted); font-weight: 500;">Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access.</p>
                         </div>
                         <div class="pt-3">
                             <button type="button" class="btn btn-pink-outline btn-sm w-100 text-center" data-bs-toggle="modal" data-bs-target="#project3Modal">
@@ -488,17 +504,17 @@
 
     <!-- Project 3 Modal -->
     <div class="modal fade" id="project3Modal" tabindex="-1" aria-labelledby="project3ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content p-3 p-md-4">
                 <div class="modal-header border-0">
-                    <h3 class="modal-title fw-bold" style="color: var(--accent-deep);" id="project3ModalLabel">Vault Lock</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h3 class="modal-title fw-bold fs-4" style="color: var(--accent-deep);" id="project3ModalLabel">Vault Lock</h3>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
                     <p class="mb-3 text-start small" style="color: var(--text-muted); font-weight: 500;">
                         Arduino password vault lock aimed to securely protect valuable items within the vault. It's designed to be highly resistant to unauthorized access. The fundamental goal of this project Password Vault Lock is to securely store and manage your passwords, protecting them from unauthorized access.
                     </p>
-                    <img src="sheen's arduino project.jpg" alt="Sheen's Vault Lock Project" class="img-fluid rounded shadow-sm mb-3" style="max-height: 280px; width: 100%; object-fit: cover;">
+                    <img src="sheen's arduino project.jpg" alt="Sheen's Vault Lock Project" class="img-fluid rounded shadow-sm mb-3" style="max-height: 250px; width: 100%; object-fit: cover;">
                     <small class="d-block" style="color: var(--text-muted); font-weight: 500;">Arduino Password Vault Lock Hardware Prototype Setup</small>
                 </div>
                 <div class="modal-footer border-0">
@@ -519,9 +535,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="DevSecOps.jpg" alt="Preparing DevSecOps for AI Development" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: var(--accent-deep);">Cybersecurity Seminar</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">Preparing DevSecOps for AI Development</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">Preparing DevSecOps for AI Development</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Professional security training covering secure AI integration risks and DevSecOps pipelines.</p>
                             <div class="mt-auto">
                                 <a href="DevSecOps.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -534,9 +550,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="digital fortify.jpg" alt="Reporting Active Exploits in 24 Hours" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: var(--accent-pink);">Digital Security</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">Reporting Active Exploits in 24 Hours: CRA</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">Reporting Active Exploits in 24 Hours: CRA</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Certified attendance focusing on vulnerability reporting standards and cyber resilience frameworks.</p>
                             <div class="mt-auto">
                                 <a href="digital fortify.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -549,9 +565,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="enhancing email.jpg" alt="Unlocking ROI in AI-Powered Development" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: #a8435b;">AI Development</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">Unlocking ROI in AI-Powered Development</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">Unlocking ROI in AI-Powered Development</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Completed training on return on investment and strategic deployment of AI development tools.</p>
                             <div class="mt-auto">
                                 <a href="enhancing email.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -564,9 +580,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="real ai.jpg" alt="How Generative AI is Changing the SDLC" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: var(--accent-deep);">AI Seminar</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">How Generative AI is Changing the SDLC</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">How Generative AI is Changing the SDLC</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Completed professional training on AI-driven software development lifecycle transformation.</p>
                             <div class="mt-auto">
                                 <a href="real ai.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -579,9 +595,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="500">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="SDLC.jpg" alt="IoT 101: Your Gateway to Smart Technology" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: var(--accent-pink);">IoT Webinar</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">IoT 101: Your Gateway to Smart Technology</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">IoT 101: Your Gateway to Smart Technology</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Successfully completed Internet of Things webinar training on smart device integration.</p>
                             <div class="mt-auto">
                                 <a href="SDLC.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -594,9 +610,9 @@
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
                     <div class="glass-card certificate-card h-100 p-0 overflow-hidden d-flex flex-column">
                         <img src="smart tech.jpg" alt="Smart Tech Integration Certificate" class="img-fluid">
-                        <div class="card-body d-flex flex-column p-4">
+                        <div class="card-body d-flex flex-column p-3 p-md-4">
                             <span class="badge mb-2 align-self-start text-white" style="background-color: #a8435b;">Technology Credential</span>
-                            <h5 class="fw-bold" style="color: var(--text-dark);">Smart Tech System Integration</h5>
+                            <h5 class="fw-bold fs-6" style="color: var(--text-dark);">Smart Tech System Integration</h5>
                             <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">Certified completion of advanced smart technology applications and prototype building.</p>
                             <div class="mt-auto">
                                 <a href="smart tech.jpg" target="_blank" class="btn btn-pink-outline btn-sm w-100"><i class="fa-solid fa-certificate me-1"></i>View Full Certificate</a>
@@ -618,13 +634,13 @@
                 <div class="col-md-6" data-aos="fade-right">
                     <div class="glass-card h-100">
                         <h4 class="h5 fw-bold mb-3" style="color: var(--text-dark);"><i class="fa-solid fa-screwdriver-wrench me-2" style="color: var(--accent-pink);"></i>Excel & Database Diagnostics Log</h4>
-                        <p class="mb-0" style="color: var(--text-muted); font-weight: 500;">Logs technical troubleshooting procedures addressing dynamic formula circular references, corrupt dataset imports, query execution timeouts, and relational foreign key constraints.</p>
+                        <p class="mb-0 small" style="color: var(--text-muted); font-weight: 500;">Logs technical troubleshooting procedures addressing dynamic formula circular references, corrupt dataset imports, query execution timeouts, and relational foreign key constraints.</p>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
                     <div class="glass-card h-100">
                         <h4 class="h5 fw-bold mb-3" style="color: var(--text-dark);"><i class="fa-solid fa-shield-halved me-2" style="color: var(--accent-pink);"></i>Data Privacy & Security Analysis</h4>
-                        <p class="mb-0" style="color: var(--text-muted); font-weight: 500;">Comprehensive analysis covering raw research data protection, compliance with Data Privacy standards, workbook password encryption, and secure SQL input sanitization.</p>
+                        <p class="mb-0 small" style="color: var(--text-muted); font-weight: 500;">Comprehensive analysis covering raw research data protection, compliance with Data Privacy standards, workbook password encryption, and secure SQL input sanitization.</p>
                     </div>
                 </div>
             </div>
@@ -647,14 +663,14 @@
                 </div>
             </div>
 
-            <!-- Employability Video Showcase -->
+            <!-- Employability Video Showcase - Compact & Fitted -->
             <div class="row justify-content-center mb-4">
-                <div class="col-lg-10" data-aos="zoom-in">
-                    <div class="glass-card p-4 text-center">
-                        <h4 class="h5 fw-bold mb-3" style="color: var(--text-dark);"><i class="fa-solid fa-video me-2" style="color: var(--accent-pink);"></i>Employability & Professional Video Presentation</h4>
-                        <p class="small mb-4" style="color: var(--text-muted); font-weight: 500;">A brief video presentation showcasing my communication skills, professional readiness, and qualifications.</p>
-                        <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm border border-light">
-                            <video controls class="w-100 h-100" style="object-fit: cover;">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <div class="glass-card p-3 p-md-4 text-center">
+                        <h4 class="h5 fw-bold mb-2" style="color: var(--text-dark);"><i class="fa-solid fa-video me-2" style="color: var(--accent-pink);"></i>Professional Video Presentation</h4>
+                        <p class="small mb-3" style="color: var(--text-muted); font-weight: 500;">A brief video presentation showcasing my communication skills, professional readiness, and qualifications.</p>
+                        <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm border border-light mx-auto" style="max-width: 600px;">
+                            <video controls class="w-100 h-100" style="object-fit: contain; background: #000;">
                                 <source src="e448b11e-e29c-4dd5-ba21-2a1cefca157b.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -699,10 +715,10 @@
             <p class="section-subtitle">Official CV for IT and Data Analyst positions</p>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="glass-card p-5 text-center">
-                        <h4 class="fw-bold mb-3" style="color: var(--text-dark);">Looking for my official CV?</h4>
-                        <p class="mb-4" style="color: var(--text-muted); font-weight: 500;">Tailored for Data Analyst, Research Assistant, and IT Systems Support roles.</p>
-                        <a href="sheen-resume.pdf" download="sheen-resume.pdf" class="btn btn-pink-gradient mx-auto"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Official Resume</a>
+                    <div class="glass-card p-4 p-md-5 text-center">
+                        <h4 class="fw-bold mb-3 fs-5" style="color: var(--text-dark);">Looking for my official CV?</h4>
+                        <p class="mb-4 small" style="color: var(--text-muted); font-weight: 500;">Tailored for Data Analyst, Research Assistant, and IT Systems Support roles.</p>
+                        <a href="sheen-resume.pdf" download="sheen-resume.pdf" class="btn btn-pink-gradient mx-auto btn-sm md-btn"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Official Resume</a>
                     </div>
                 </div>
             </div>
@@ -720,8 +736,8 @@
                     <a href="mailto:rewelynsheenbogabil@gmail.com" class="contact-box">
                         <i class="fa-solid fa-envelope"></i>
                         <div class="overflow-hidden">
-                            <small class="d-block mb-1" style="color: var(--text-muted);">Email</small>
-                            <span class="small fw-bold text-break" style="color: var(--text-dark);">rewelynsheenbogabil@gmail.com</span>
+                            <small class="d-block mb-1 text-muted" style="font-size: 0.75rem;">Email</small>
+                            <span class="small fw-bold text-break" style="color: var(--text-dark); font-size: 0.8rem;">rewelynsheenbogabil@gmail.com</span>
                         </div>
                     </a>
                 </div>
@@ -730,7 +746,7 @@
                     <a href="https://web.facebook.com/sheen.bogabil.2025" target="_blank" class="contact-box">
                         <i class="fa-brands fa-facebook"></i>
                         <div>
-                            <small class="d-block mb-1" style="color: var(--text-muted);">Facebook</small>
+                            <small class="d-block mb-1 text-muted" style="font-size: 0.75rem;">Facebook</small>
                             <span class="small fw-bold" style="color: var(--text-dark);">Sheen Bogabil</span>
                         </div>
                     </a>
@@ -740,7 +756,7 @@
                     <a href="tel:09813924967" class="contact-box">
                         <i class="fa-solid fa-phone"></i>
                         <div>
-                            <small class="d-block mb-1" style="color: var(--text-muted);">Phone</small>
+                            <small class="d-block mb-1 text-muted" style="font-size: 0.75rem;">Phone</small>
                             <span class="small fw-bold" style="color: var(--text-dark);">0981 392 4967</span>
                         </div>
                     </a>
@@ -750,7 +766,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=BF+Int.+CAA,+Las+Pinas+City" target="_blank" class="contact-box">
                         <i class="fa-solid fa-location-dot"></i>
                         <div>
-                            <small class="d-block mb-1" style="color: var(--text-muted);">Location</small>
+                            <small class="d-block mb-1 text-muted" style="font-size: 0.75rem;">Location</small>
                             <span class="small fw-bold" style="color: var(--text-dark);">BF Int./CAA, Las Piñas</span>
                         </div>
                     </a>
